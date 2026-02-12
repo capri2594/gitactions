@@ -8,9 +8,21 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Run linter
+      - name: clonando app
+        uses: actions/checkout@v3
+
+      - name: configurando nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: instalar paquetes
+        run: npm ci
+
+      - name: ejecutar linter
         run: npm run lint
 
-      - name: Run tests
+      - name: ejecutar test
         run: npm test
